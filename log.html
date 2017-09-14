@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+	<title>Twitter Tool</title>
+	<meta name="author" content="Yoshihiro Ueda"/>
+	<link type="text/css" rel="stylesheet" href="stylesheets/main.css" />
+</head>
+
+<body>
+	<div ID="BODY">
+		<div ID="title"><img src="images/logo.png"></div>
+		<div ID="logo">
+			<span style="text-align:left;float:left; width:240px;">
+				<a href="{{ url }}">{{ url_linktext }}</a>
+				&nbsp;
+				<a href="./">Top</a>
+			</span>
+			<span>Yoshihiro Ueda</span>
+		</div>
+		Size: {{ size }} <br />
+		<div style="font-size:12px;">
+			<table width="100%">
+				<tr>
+					<th width = "110px">Date</th>
+					<th width = "140px">User</th>
+					<th>Input</th>
+					<th>Result</th>
+				<tr>
+			{% for log in logs %}
+				<tr>
+					<td>{{ log.date|date:"Y/m/d H:i:s (T)" }}</td>
+					<td>{% if log.author %}
+						{{ log.author.nickname }}
+						{% else %}
+						 匿名さん
+						{% endif %}</td>
+					<td>{{ log.spec }}</td>
+					<td>{{ log.content }}</td>
+				</tr>
+			{% endfor %}
+		</div>
+	</div>
+</body>
+</html>

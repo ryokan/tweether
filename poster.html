@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>Twitter Poster</title>
+	<meta name="author" content="Yoshihiro Ueda"/>
+	    <link type="text/css" rel="stylesheet" href="stylesheets/poster.css" />
+</head>
+
+<body>
+	<div id="banner">
+		<img src="/images/twitimes.gif">
+	</div>
+	<div id="container">
+		<div id = "theme">
+			Theme: <span class = "theme">{{keyword}}</span> [{% now "Y/m/d H:i:s (T)" %}]
+		</div>
+		<div id="left" class="column">
+			{% for item in itemsL %}
+			<div class= "tweet-body" width="100%">
+				<div style="float:left;width:64px;height:64px;">
+					<img src="{{item.image}}" alt="icon" width="48" height="48">
+				</div>
+				<div>
+					<a href="http://twitter.com/{{ item.user }}">{{ item.user }}</a>:
+					{{ item.text }}
+					<a class="tweet-date" href="http://twitter.com/{{ item.user }}/statuses/{{ item.id }}">{{ item.date }}</a>
+				</div>
+			</div>
+			<br clear="all"/>
+			{% endfor %}
+		</div>
+		<div id="right" class="column">
+			{% for item in itemsR %}
+			<div class= "tweet-body" width="100%">
+				<div style="float:left;width:64px;height:64px;">
+					<img src="{{item.image}}"　alt="icon" width="48" height="48">
+				</div>
+				<div>
+					<a href="http://twitter.com/{{ item.user }}">{{ item.user }}</a>:
+					{{ item.text }}
+					<a class="tweet-date" href="http://twitter.com/{{ item.user }}/statuses/{{ item.id }}">{{ item.date }}</a>
+				</div>
+			</div>
+			<br clear="all"/>
+			{% endfor %}
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript">
+	try {
+	var pageTracker = _gat._getTracker("UA-598676-10");
+	pageTracker._trackPageview();
+	} catch(err) {}</script>
+</body>
+</html>

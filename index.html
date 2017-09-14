@@ -1,0 +1,78 @@
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+  <title>Twitter Tool</title>
+  <meta name="author" content="Yoshihiro Ueda"/>
+    <link type="text/css" rel="stylesheet" href="stylesheets/main.css" />
+</head>
+<body>
+	<DIV ID="BODY">
+		<div ID="title"><img src="images/logo.png"></div>
+		<div ID="logo">
+			<span style="text-align:left;float:left; width:240px;">
+				<a href="{{ url }}">{{ url_linktext }}</a>
+			</span>
+			<span><a href="mailto:yoshihiroueda@gmail.com">Yoshihiro Ueda</a></span>
+		</div>
+		<div>	
+			<form action="/print" method="post"  >
+				<div><font size="+2"><b>Poster Maker</b></font><br/>
+					Search String:
+					<input type="text" name="keyword" size="24" />
+					<input type="submit" value="TwiTimes" />
+					-> Print on A3 paper
+				</div>
+			</form>
+			<form action="/fetch" method="post" width="100%" >
+				<div><font size="+2"><b>Tweet Formatter</b></font><br/>
+					Tweet URLs or IDs (Last digits of the URL) separated by " " (single-byte space)
+					<input type="submit" value="Format" /><br/>
+					<input type="text" name="spec" size="144" />
+				</div>
+			</form>
+		</div>
+		<div>
+			{% for item in items %}
+			<div width="100%">
+				<div style="float:left;width:60px;height:60px;">
+					<img src="{{item.image}}">
+				</div>
+				<div>
+					<a href="http://twitter.com/{{ item.user }}">{{ item.user }}</a>:
+					{{ item.text }}
+					(<a href="http://twitter.com/{{ item.user }}/statuses/{{ item.id }}">{{ item.date }}</a>)
+				</div>
+			</div>
+			<br clear="all"/>
+			{% endfor %}
+		</div>
+		
+		<blockquote>
+		{% filter escape %}
+			{% for item in items %}
+			<div width="100%">			
+				<div style="float:left;width:60px;height:60px;">
+					<img src="{{item.image}}">
+				</div>
+				<div>
+					<a href="http://twitter.com/{{ item.user }}">{{ item.user }}</a>:
+					{{ item.text }}
+					(<a href="http://twitter.com/{{ item.user }}/statuses/{{ item.id }}">{{ item.date }}</a>)
+				</div>
+			</div>
+			<br clear="all"/>
+			{% endfor %}
+		{% endfilter %}
+		</blockquote>
+	</div>
+	<script type="text/javascript">
+	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript">
+	try {
+	var pageTracker = _gat._getTracker("UA-598676-10");
+	pageTracker._trackPageview();
+	} catch(err) {}</script>
+</body>
+</html>
